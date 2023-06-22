@@ -8,18 +8,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MaterialApp(
       title: 'Flutter Developer Portfolio',
       theme: ThemeData(
-        primaryColor: const Color.fromARGB(255, 43, 91, 44),
-        accentColor: const Color.fromARGB(255, 43, 91, 44),
-        fontFamily: 'Montserrat',
+        colorScheme: const ColorScheme.light().copyWith(
+          primary: const Color.fromARGB(255, 43, 91, 44),
+          secondary: const Color.fromARGB(255, 0, 0, 255), // Accent color
+        ),
+        fontFamily: 'Montserrat', // Custom font
       ),
-      darkTheme: ThemeData.dark().copyWith(
-        primaryColor: const Color.fromARGB(255, 43, 91, 44),
-        accentColor: const Color.fromARGB(255, 43, 91, 44),
+      darkTheme: ThemeData(
+        colorScheme: const ColorScheme.dark().copyWith(
+          primary: const Color.fromARGB(255, 43, 91, 44),
+          secondary: const Color.fromARGB(255, 0, 0, 255), // Accent color
+        ),
+        fontFamily: 'Montserrat', // Custom font
       ),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.system, // Auto switch between light and dark mode
       home: const MyHomePage(title: 'Flutter Developer Portfolio'),
     );
   }
