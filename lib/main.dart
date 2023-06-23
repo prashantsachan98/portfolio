@@ -39,30 +39,31 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  // late AnimationController _animationController;
-  // late Animation<double> _fadeInAnimation;
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _fadeInAnimation;
   bool _isDarkMode = false;
 
   @override
   void initState() {
     super.initState();
-    // _animationController = AnimationController(
-    //   vsync: this,
-    //   duration: const Duration(milliseconds: 500),
-    // );
-    // _fadeInAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-    //   CurvedAnimation(
-    //     parent: _animationController,
-    //     curve: Curves.easeIn,
-    //   ),
-    // );
-    // _animationController.forward();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    _fadeInAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeIn,
+      ),
+    );
+    _animationController.forward();
   }
 
   @override
   void dispose() {
-//_animationController.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -86,16 +87,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
+        body: ListView(
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              //    FadeTransition(
-              //opacity: _fadeInAnimation,
-              //    child:
-              Container(
+          children: [
+            FadeTransition(
+              opacity: _fadeInAnimation,
+              child: Container(
                 height: 200,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
@@ -105,204 +103,203 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              //  ),
-              const SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const CircleAvatar(
-                      backgroundImage: NetworkImage(
-                          'https://lh3.googleusercontent.com/pw/AJFCJaVdh_R2yAZ2hJ7FnyrUDqrhmVtOQcmNTN3MSspthV6m-MuyLI0Phcxk4bWeu3Lsnn7RDVwjFk3CTRUsHyGRAglYgDgpneYl88UwkvhEZ1CO6mvRM0HdQOHbYXNRTBsjsrLnF2l8ZY0m8dYXNdUQXU24=w717-h956-s-no?authuser=0'),
-                      radius: 50,
+            ),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://lh3.googleusercontent.com/pw/AJFCJaVdh_R2yAZ2hJ7FnyrUDqrhmVtOQcmNTN3MSspthV6m-MuyLI0Phcxk4bWeu3Lsnn7RDVwjFk3CTRUsHyGRAglYgDgpneYl88UwkvhEZ1CO6mvRM0HdQOHbYXNRTBsjsrLnF2l8ZY0m8dYXNdUQXU24=w717-h956-s-no?authuser=0'),
+                    radius: 50,
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'John Doe',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'John Doe',
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Flutter Developer',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 16,
+                      color: Colors.grey,
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Flutter Developer',
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'About Me',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'About Me',
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'I am a Flutter developer with experience in building high-quality mobile applications. I have a strong understanding of Dart and the Flutter framework, and I am skilled in building responsive and user-friendly interfaces.',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 16,
+                      color: Colors.grey,
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'I am a Flutter developer with experience in building high-quality mobile applications. I have a strong understanding of Dart and the Flutter framework, and I am skilled in building responsive and user-friendly interfaces.',
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Skills',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Skills',
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8.0,
+                    runSpacing: 4.0,
+                    children: const <Widget>[
+                      Chip(label: Text('Flutter')),
+                      Chip(label: Text('Dart')),
+                      Chip(label: Text('Firebase')),
+                      Chip(label: Text('Git')),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Projects',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 8.0,
-                      runSpacing: 4.0,
-                      children: const <Widget>[
-                        Chip(label: Text('Flutter')),
-                        Chip(label: Text('Dart')),
-                        Chip(label: Text('Firebase')),
-                        Chip(label: Text('Git')),
-                      ],
+                  ),
+                  const SizedBox(height: 8),
+                  Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Projects',
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Card(
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: InkWell(
-                        onTap: () => launch(
-                            'https://wallpaperaccess.com/full/1111946.jpg'),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: Image.network(
-                                'https://picsum.photos/seed/picsum/200/300',
-                                height: 150,
-                                fit: BoxFit.cover,
-                              ),
+                    child: InkWell(
+                      onTap: () => launch(
+                          'https://wallpaperaccess.com/full/1111946.jpg'),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: Image.network(
+                              'https://picsum.photos/seed/picsum/200/300',
+                              height: 150,
+                              fit: BoxFit.cover,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const <Widget>[
-                                  Text(
-                                    'Project 1',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const <Widget>[
+                                Text(
+                                  'Project 1',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  SizedBox(height: 8),
-                                  Text(
-                                    'This is a description of Project 1. It is a mobile application built using Flutter and Firebase.',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontSize: 16,
-                                      color: Colors.grey,
-                                    ),
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  'This is a description of Project 1. It is a mobile application built using Flutter and Firebase.',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 16,
+                                    color: Colors.grey,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    Card(
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: InkWell(
-                        onTap: () => launch(
-                            'https://wallpaperaccess.com/full/1111946.jpg'),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: Image.network(
-                                'https://picsum.photos/200/300',
-                                height: 150,
-                                fit: BoxFit.cover,
-                              ),
+                  ),
+                  const SizedBox(height: 16),
+                  Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: InkWell(
+                      onTap: () => launch(
+                          'https://wallpaperaccess.com/full/1111946.jpg'),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: Image.network(
+                              'https://picsum.photos/200/300',
+                              height: 150,
+                              fit: BoxFit.cover,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const <Widget>[
-                                  Text(
-                                    'Project 2',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const <Widget>[
+                                Text(
+                                  'Project 2',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  SizedBox(height: 8),
-                                  Text(
-                                    'This is a description of Project 2. It is a mobile application built using Flutter and Firebase.',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontSize: 16,
-                                      color: Colors.grey,
-                                    ),
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  'This is a description of Project 2. It is a mobile application built using Flutter and Firebase.',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 16,
+                                    color: Colors.grey,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    Row(
-                      children: <Widget>[
-                        IconButton(
-                          icon: const Icon(Icons.email),
-                          onPressed: () => launch(
-                              'mailto:<Email>?subject=Contact%20from%20Portfolio%20Website'),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.phone),
-                          onPressed: () => launch('tel:<PhoneNumber>'),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.web),
-                          onPressed: () => launch('<URL>'),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: <Widget>[
+                      IconButton(
+                        icon: const Icon(Icons.email),
+                        onPressed: () => launch(
+                            'mailto:<Email>?subject=Contact%20from%20Portfolio%20Website'),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.phone),
+                        onPressed: () => launch('tel:<PhoneNumber>'),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.web),
+                        onPressed: () => launch('<URL>'),
+                      ),
+                    ],
+                  )
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
