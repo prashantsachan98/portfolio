@@ -1,9 +1,5 @@
-// Add these imports at the top of your file
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:webview_flutter/webview_flutter.dart';
-import 'universal_html_stub.dart' if (dart.library.html) 'dart:html';
 
 void main() => runApp(const MyApp());
 
@@ -43,35 +39,61 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _fadeInAnimation;
+  late AnimationController _downloadAnimationController;
+  late Animation<double> _downloadAnimation;
+  bool _isDownloading = false;
   bool _isDarkMode = false;
-  late WebViewController controllerWebview;
 
   @override
   void initState() {
-    controllerWebview = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
-      ..setUserAgent("userAgent")
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onProgress: (int progress) {
-            // Update loading bar.
-          },
-          onPageStarted: (String url) {},
-          onPageFinished: (String url) {},
-          onWebResourceError: (WebResourceError error) {},
-          onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
-              return NavigationDecision.prevent;
-            }
-            return NavigationDecision.navigate;
-          },
-        ),
-      )
-      ..loadRequest(Uri.parse(
-          'https://drive.google.com/file/d/1--G1uAegTa4pZgMc_PqTMZnULz_KUZe-/view?pli=1'));
     super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    _fadeInAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeIn,
+      ),
+    );
+    _animationController.forward();
+    _downloadAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+    _downloadAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _downloadAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+    _downloadAnimationController.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    _downloadAnimationController.dispose();
+    super.dispose();
+  }
+
+  // Add this method to your _MyHomePageState class
+  Future<void> _downloadResume() async {
+    setState(() {
+      _isDownloading = true;
+    });
+    // Replace this URL with the URL of your resume file
+    final url = '<URL>';
+    // Use the launch method from the url_launcher package to open the URL
+    // await launch(url);
+    await Future.delayed(const Duration(seconds: 3));
+    setState(() {
+      _isDownloading = false;
+    });
   }
 
   @override
@@ -84,62 +106,35 @@ class _MyHomePageState extends State<MyHomePage> {
           primary: const Color.fromARGB(255, 43, 91, 44),
         ),
       ),
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              widget.title,
-              style: const TextStyle(
-                fontFamily: 'Montserrat',
-                fontWeight: FontWeight.bold,
-              ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            widget.title,
+            style: const TextStyle(
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.bold,
             ),
-            bottom: const TabBar(
-              tabs: [
-                Tab(text: 'Home'),
-                Tab(text: 'Resume'),
-                Tab(
-                  text: 'Blog',
-                )
-              ],
-            ),
-          ),
-          body: TabBarView(
-            physics: const NeverScrollableScrollPhysics(),
-            children: [_buildHomeTab(), _buildResumeTab(), _buildBlogTab()],
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              setState(() {
-                _isDarkMode = !_isDarkMode;
-              });
-            },
-            child: Icon(_isDarkMode ? Icons.light_mode : Icons.dark_mode),
-            backgroundColor: theme.colorScheme.primary,
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildHomeTab() {
-    return ListView(
-        physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics()),
-        children: [
-          Container(
-            height: 200,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    'https://wallpaperaccess.com/full/1111946.jpg'),
-                fit: BoxFit.cover,
+        body: ListView(
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
+          children: [
+            FadeTransition(
+              opacity: _fadeInAnimation,
+              child: Container(
+                height: 200,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        'https://wallpaperaccess.com/full/1111946.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
+            const SizedBox(height: 16),
+            Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -313,6 +308,23 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   const SizedBox(height: 16),
+                  TextButton(
+                    onPressed: _isDownloading ? null : _downloadResume,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (_isDownloading)
+                          FadeTransition(
+                            opacity: _downloadAnimation,
+                            child: const Icon(Icons.file_download),
+                          )
+                        else
+                          const Icon(Icons.file_download),
+                        const SizedBox(width: 8),
+                        const Text('Download Resume'),
+                      ],
+                    ),
+                  ),
                   Row(
                     children: <Widget>[
                       IconButton(
@@ -331,131 +343,20 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   )
                 ],
-              ))
-        ]);
-  }
-
-  Widget _buildResumeTab() {
-    // Replace this URL with the URL of your resume file
-    final url = 'https://flutter.dev';
-    if (kIsWeb) {
-      // Use an iframe on the web platform
-      // Create an iframe element
-      final iframe = IFrameElement()
-        ..width = '100%'
-        ..height = '100%'
-        ..src = url
-        ..style.border = 'none';
-      // Return a HtmlElementView widget that displays the iframe element
-      return HtmlElementView(
-        viewType: 'resume-iframe',
-        onPlatformViewCreated: (int viewId) {
-          // Append the iframe element to the document body
-          document.body!.append(iframe);
-        },
-      );
-    } else {
-      // Use a WebView on mobile platforms
-      return WebViewWidget(controller: controllerWebview);
-    }
-  }
-  // ...
-
-  // ...
-
-  Widget _buildBlogTab() {
-    // Replace this list with your own list of blog posts
-    final blogPosts = [
-      BlogPost(
-        title: 'Blog Post 1',
-        date: '2022-01-01',
-        imageUrl: 'https://picsum.photos/seed/picsum/200/300',
-        content:
-            'This is the content of Blog Post 1. It is a short description of the blog post.',
-      ),
-      BlogPost(
-        title: 'Blog Post 2',
-        date: '2022-02-01',
-        imageUrl: 'https://picsum.photos/200/300',
-        content:
-            'This is the content of Blog Post 2. It is a short description of the blog post.',
-      ),
-      BlogPost(
-        title: 'Blog Post 3',
-        date: '2022-03-01',
-        imageUrl: 'https://picsum.photos/seed/picsum/200/300',
-        content:
-            'This is the content of Blog Post 3. It is a short description of the blog post.',
-      ),
-    ];
-    return ListView.builder(
-      itemCount: blogPosts.length,
-      itemBuilder: (context, index) {
-        final blogPost = blogPosts[index];
-        return Card(
-          margin: const EdgeInsets.all(16),
-          child: InkWell(
-            onTap: () {
-              // Handle tap
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: Image.network(
-                    blogPost.imageUrl,
-                    width: double.infinity,
-                    height: 200,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        blogPost.title,
-                        style: const TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        blogPost.date,
-                        style: const TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(blogPost.content),
-                    ],
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        );
-      },
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              _isDarkMode = !_isDarkMode;
+            });
+          },
+          child: Icon(_isDarkMode ? Icons.light_mode : Icons.dark_mode),
+          backgroundColor: theme.colorScheme.primary,
+        ),
+      ),
     );
   }
-}
-
-class BlogPost {
-  final String title;
-  final String date;
-  final String imageUrl;
-  final String content;
-
-  BlogPost({
-    required this.title,
-    required this.date,
-    required this.imageUrl,
-    required this.content,
-  });
 }
