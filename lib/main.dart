@@ -204,9 +204,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: <Widget>[
                           ClipRRect(
                             borderRadius: BorderRadius.circular(4),
-                            child: Image.network(
-                              'https://drive.google.com/file/d/1R4aKohvzr93UzQIu97AcxXbtG1ZgFyN-/view?usp=sharing',
-                              height: 150,
+                            child: Image.asset(
+                              'asset/images/newHub.jpeg',
+                              height: 180,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -225,10 +225,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 SizedBox(height: 8),
                                 Text(
-                                  'The Flutter app is a clone of the popular news app InShorts in India. It offers a light/dark mode toggle, allowing users to read summaries of breaking news in 60 words. Users can access news from various categories and sources in one place, and read full articles through a webview. The app also enables easy sharing of news cards with friends.',
+                                  'A clone of the popular news app. It offers a light/dark mode toggle, allowing users to read summaries of breaking news in 60 words. Users can access news from various categories and sources in one place, and read full articles through a webview. The app also enables easy sharing of news cards with friends.',
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     color: Colors.grey,
                                   ),
                                 ),
@@ -253,9 +253,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: <Widget>[
                           ClipRRect(
                             borderRadius: BorderRadius.circular(4),
-                            child: Image.network(
-                              'https://drive.google.com/file/d/1OBGtqsMjzpHRFW6d8QdMDzgONzCfDYeP/view?usp=sharing',
-                              height: 150,
+                            child: Image.asset(
+                              'asset/images/Foodose.jpeg',
+                              height: 180,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -274,10 +274,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 SizedBox(height: 8),
                                 Text(
-                                  'The recipe app is built with Flutter and utilizes the spoonacular API. Users can search for recipes using the spoonacular API, which provides detailed information on ingredients and instructions for cooking. The app is cross-platform, compatible with various devices. It also includes a diet planner feature that allows users to plan their meals for the day. Additionally, users can save their favorite recipes offline for convenient access when cooking later. The app provides a seamless and user-friendly experience for discovering, planning, and preparing delicious meals.',
+                                  'The recipe app is built with Flutter and utilizes the spoonacular API. Users can search for recipes , which provides detailed information on ingredients and instructions for cooking. It also includes a diet planner feature that allows users to plan their meals for the day. Additionally, users can save their favorite recipes offline for convenience. The app provides a seamless and user-friendly experience for discovering, planning, and preparing delicious meals.',
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     color: Colors.grey,
                                   ),
                                 ),
@@ -302,9 +302,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: <Widget>[
                           ClipRRect(
                             borderRadius: BorderRadius.circular(4),
-                            child: Image.network(
-                              'https://drive.google.com/file/d/1dKtCjbrZ2y49sLzQIafnOF0hfjlXJBCW/view?usp=drive_link',
-                              height: 150,
+                            child: Image.asset(
+                              'asset/images/todo.jpeg',
+                              height: 180,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -323,10 +323,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 SizedBox(height: 8),
                                 Text(
-                                  "TaskDo is a cross-platform ToDo List app designed for efficient task management. The app integrates Firebase and Google login for seamless user authentication and data storage. With TaskDo, users can easily create, organize, and prioritize tasks, ensuring productivity and effective time management. The app provides a user-friendly interface for adding tasks, setting deadlines, and marking completed tasks. Whether it's for personal use or team collaboration, TaskDo simplifies the process of managing tasks and staying organized.",
+                                  "TaskDo is a cross-platform ToDo List app designed for efficient task management. The app integrates Firebase and Google login for seamless user authentication and data storage. With TaskDo, users can easily create, organize, and prioritize tasks, ensuring productivity and effective time management. The app provides a user-friendly interface for adding tasks, setting deadlines, and marking completed tasks.",
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
-                                    fontSize: 16,
+                                    fontSize: 15,
                                     color: Colors.grey,
                                   ),
                                 ),
