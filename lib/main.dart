@@ -1,10 +1,8 @@
 // Add these imports at the top of your file
-import 'dart:html';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
+import 'package:portfolio/resume.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'dart:ui' as ui;
 
 void main() => runApp(const MyApp());
 
@@ -85,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           body: TabBarView(
             physics: const NeverScrollableScrollPhysics(),
-            children: [_buildHomeTab(), _buildResumeTab(), _buildBlogTab()],
+            children: [_buildHomeTab(), ResumeWidget(), _buildBlogTab()],
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -313,47 +311,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ]);
   }
 
-  Widget _buildResumeTab() {
-    // Replace this URL with the URL of your resume file
-    const url =
-        'https://drive.google.com/file/d/1--G1uAegTa4pZgMc_PqTMZnULz_KUZe-/view?pli=1';
-
-    if (kIsWeb) {
-      //ignore: undefined_prefixed_name
-      ui.platformViewRegistry.registerViewFactory('resume', (int viewId) {
-        return IFrameElement()
-          ..style.width = '100%'
-          ..style.height = '100%'
-          ..src = url
-          ..style.border = 'none';
-      });
-      return const HtmlElementView(viewType: 'resume');
-    } else {
-      final WebViewController controllerWebview = WebViewController()
-        ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..setBackgroundColor(const Color(0x00000000))
-        ..setUserAgent("userAgent")
-        ..setNavigationDelegate(
-          NavigationDelegate(
-            onProgress: (int progress) {
-              // Update loading bar.
-            },
-            onPageStarted: (String url) {},
-            onPageFinished: (String url) {},
-            onWebResourceError: (WebResourceError error) {},
-            onNavigationRequest: (NavigationRequest request) {
-              if (request.url.startsWith('https://www.youtube.com/')) {
-                return NavigationDecision.prevent;
-              }
-              return NavigationDecision.navigate;
-            },
-          ),
-        )
-        ..loadRequest(Uri.parse(url));
-      // Use a WebView on mobile platforms
-      return WebViewWidget(controller: controllerWebview);
-    }
-  }
   // ...
 
   // ...
