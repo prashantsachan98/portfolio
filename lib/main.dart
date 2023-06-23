@@ -1,9 +1,10 @@
 // Add these imports at the top of your file
+import 'dart:html';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:webview_flutter/webview_flutter.dart';
-import 'universal_html_stub.dart' if (dart.library.html) 'dart:html';
+import 'dart:ui' as ui;
 
 void main() => runApp(const MyApp());
 
@@ -316,22 +317,17 @@ class _MyHomePageState extends State<MyHomePage> {
     // Replace this URL with the URL of your resume file
     const url =
         'https://drive.google.com/file/d/1--G1uAegTa4pZgMc_PqTMZnULz_KUZe-/view?pli=1';
+
     if (kIsWeb) {
-      // Use an iframe on the web platform
-      // Create an iframe element
-      final iframe = IFrameElement()
-        ..width = '100%'
-        ..height = '100%'
-        ..src = url
-        ..style.border = 'none';
-      // Return a HtmlElementView widget that displays the iframe element
-      return HtmlElementView(
-        viewType: 'resume-iframe',
-        onPlatformViewCreated: (int viewId) {
-          // Append the iframe element to the document body
-          document.body!.append(iframe);
-        },
-      );
+      //ignore: undefined_prefixed_name
+      ui.platformViewRegistry.registerViewFactory('resume', (int viewId) {
+        return IFrameElement()
+          ..style.width = '100%'
+          ..style.height = '100%'
+          ..src = url
+          ..style.border = 'none';
+      });
+      return const HtmlElementView(viewType: 'resume');
     } else {
       final WebViewController controllerWebview = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
