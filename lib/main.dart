@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       title: 'Flutter Developer Portfolio',
       theme: ThemeData(
         colorScheme: const ColorScheme.light().copyWith(
@@ -39,31 +39,30 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _fadeInAnimation;
+class _MyHomePageState extends State<MyHomePage> {
+  // late AnimationController _animationController;
+  // late Animation<double> _fadeInAnimation;
   bool _isDarkMode = false;
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-    _fadeInAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.easeIn,
-      ),
-    );
-    _animationController.forward();
+    // _animationController = AnimationController(
+    //   vsync: this,
+    //   duration: const Duration(milliseconds: 500),
+    // );
+    // _fadeInAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+    //   CurvedAnimation(
+    //     parent: _animationController,
+    //     curve: Curves.easeIn,
+    //   ),
+    // );
+    // _animationController.forward();
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+//_animationController.dispose();
     super.dispose();
   }
 
@@ -93,19 +92,20 @@ class _MyHomePageState extends State<MyHomePage>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              FadeTransition(
-                opacity: _fadeInAnimation,
-                child: Container(
-                  height: 160,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          'https://wallpaperaccess.com/full/1111946.jpg'),
-                      fit: BoxFit.cover,
-                    ),
+              //    FadeTransition(
+              //opacity: _fadeInAnimation,
+              //    child:
+              Container(
+                height: 200,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        'https://wallpaperaccess.com/full/1111946.jpg'),
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
+              //  ),
               const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.all(16.0),
