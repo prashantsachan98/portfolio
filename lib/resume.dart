@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ResumeWidget extends StatelessWidget {
   @override
@@ -262,7 +263,7 @@ class ResumeWidget extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                // Open GitHub profile
+                launchUrl(Uri.parse("https://github.com/prashantsachan98"));
               },
               child: const Text(
                 'GitHub - prashantsachan98',

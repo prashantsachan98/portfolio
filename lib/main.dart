@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   const SizedBox(height: 16),
                   const Text(
-                    'John Doe',
+                    'Prashant Sachan',
                     style: TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 24,
