@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Developer Portfolio',
+      title: 'Developer Portfolio',
       theme: ThemeData(
         colorScheme: const ColorScheme.light().copyWith(
           primary: const Color.fromARGB(255, 43, 91, 44),
@@ -197,15 +197,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: InkWell(
-                      onTap: () => launch(
-                          'https://wallpaperaccess.com/full/1111946.jpg'),
+                      onTap: () => launchUrl(Uri.parse(
+                          'https://github.com/prashantsachan98/newshub')),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           ClipRRect(
                             borderRadius: BorderRadius.circular(4),
                             child: Image.network(
-                              'https://picsum.photos/seed/picsum/200/300',
+                              'https://drive.google.com/file/d/1R4aKohvzr93UzQIu97AcxXbtG1ZgFyN-/view?usp=sharing',
                               height: 150,
                               fit: BoxFit.cover,
                             ),
@@ -216,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: const <Widget>[
                                 Text(
-                                  'Project 1',
+                                  'newsHub',
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontSize: 18,
@@ -225,7 +225,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 SizedBox(height: 8),
                                 Text(
-                                  'This is a description of Project 1. It is a mobile application built using Flutter and Firebase.',
+                                  'The Flutter app is a clone of the popular news app InShorts in India. It offers a light/dark mode toggle, allowing users to read summaries of breaking news in 60 words. Users can access news from various categories and sources in one place, and read full articles through a webview. The app also enables easy sharing of news cards with friends.',
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontSize: 16,
@@ -246,15 +246,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: InkWell(
-                      onTap: () => launch(
-                          'https://wallpaperaccess.com/full/1111946.jpg'),
+                      onTap: () => launchUrl(Uri.parse(
+                          'https://github.com/prashantsachan98/foodose')),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           ClipRRect(
                             borderRadius: BorderRadius.circular(4),
                             child: Image.network(
-                              'https://picsum.photos/200/300',
+                              'https://drive.google.com/file/d/1OBGtqsMjzpHRFW6d8QdMDzgONzCfDYeP/view?usp=sharing',
                               height: 150,
                               fit: BoxFit.cover,
                             ),
@@ -265,7 +265,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: const <Widget>[
                                 Text(
-                                  'Project 2',
+                                  'Foodose',
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontSize: 18,
@@ -274,7 +274,56 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 SizedBox(height: 8),
                                 Text(
-                                  'This is a description of Project 2. It is a mobile application built using Flutter and Firebase.',
+                                  'The recipe app is built with Flutter and utilizes the spoonacular API. Users can search for recipes using the spoonacular API, which provides detailed information on ingredients and instructions for cooking. The app is cross-platform, compatible with various devices. It also includes a diet planner feature that allows users to plan their meals for the day. Additionally, users can save their favorite recipes offline for convenient access when cooking later. The app provides a seamless and user-friendly experience for discovering, planning, and preparing delicious meals.',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 16,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: InkWell(
+                      onTap: () => launchUrl(Uri.parse(
+                          'https://github.com/prashantsachan98/todo-with-firebase')),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: Image.network(
+                              'https://drive.google.com/file/d/1dKtCjbrZ2y49sLzQIafnOF0hfjlXJBCW/view?usp=drive_link',
+                              height: 150,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const <Widget>[
+                                Text(
+                                  'Todo',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  "TaskDo is a cross-platform ToDo List app designed for efficient task management. The app integrates Firebase and Google login for seamless user authentication and data storage. With TaskDo, users can easily create, organize, and prioritize tasks, ensuring productivity and effective time management. The app provides a user-friendly interface for adding tasks, setting deadlines, and marking completed tasks. Whether it's for personal use or team collaboration, TaskDo simplifies the process of managing tasks and staying organized.",
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontSize: 16,
