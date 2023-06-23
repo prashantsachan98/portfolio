@@ -5,13 +5,11 @@ class ResumeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Resume'),
-      ),
-      body: SingleChildScrollView(
-        padding:const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
           children: [
             const Text(
               'Prashant Sachan',
@@ -20,7 +18,7 @@ class ResumeWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               'Software Engineer',
               style: const TextStyle(
@@ -28,7 +26,7 @@ class ResumeWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               '+91-9167765822',
               style: const TextStyle(fontSize: 16),
@@ -37,12 +35,12 @@ class ResumeWidget extends StatelessWidget {
               'prashantsachan04@gmail.com',
               style: const TextStyle(fontSize: 16),
             ),
-          const  SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             const Text(
               'Kamothe, Navi Mumbai, Maharashtra',
               style: const TextStyle(fontSize: 16),
             ),
-          const  SizedBox(height: 24.0),
+            const SizedBox(height: 24.0),
             const Text(
               'EXCERPT',
               style: const TextStyle(
@@ -50,12 +48,12 @@ class ResumeWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               'Self-learner, result oriented, motivated, energetic, and enthusiastic software engineer with 1.5 years of experience. Excellent record of handling enterprise-wide projects and clients. Loves to write clean, self-explainable, and reusable code with DRY and Adapter approaches.',
               style: const TextStyle(fontSize: 16),
             ),
-          const  SizedBox(height: 24.0),
+            const SizedBox(height: 24.0),
             const Text(
               'EDUCATION',
               style: const TextStyle(
@@ -63,7 +61,7 @@ class ResumeWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               'Sikkim Manipal University',
               style: const TextStyle(fontSize: 16),
@@ -76,7 +74,7 @@ class ResumeWidget extends StatelessWidget {
               'Bachelors of Computer Application - 6.98 SGPA',
               style: const TextStyle(fontSize: 16),
             ),
-          const  SizedBox(height: 24.0),
+            const SizedBox(height: 24.0),
             const Text(
               'TECHNICAL SKILLS',
               style: const TextStyle(
@@ -84,55 +82,55 @@ class ResumeWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               'LANGUAGES',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               '• Dart\n• Python\n• C',
               style: const TextStyle(fontSize: 16),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               'FRAMEWORKS',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               '• Flutter\n• GraphQL\n• Firebase',
               style: const TextStyle(fontSize: 16),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               'DATABASE',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               '• SQLite\n• ISAR\n• Hive\n• MongoDB\n• PostgreSQL',
               style: const TextStyle(fontSize: 16),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               'TOOLS',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               '• Postman\n• GIT\n• VS code\n• Android studio',
               style: const TextStyle(fontSize: 16),
             ),
-          const  SizedBox(height: 24.0),
+            const SizedBox(height: 24.0),
             const Text(
               'EXPERIENCE',
-              style:  TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             const Text(
               'Vesatago Innovation, Nasik - Frontend Developer (Flutter)',
               style: const TextStyle(fontSize: 16),
@@ -141,52 +139,52 @@ class ResumeWidget extends StatelessWidget {
               'November 2021 - PRESENT',
               style: const TextStyle(fontSize: 16),
             ),
-          const  SizedBox(height: 8.0),
-          const   Text(
+            const SizedBox(height: 8.0),
+            const Text(
               '• Worked with Flutter to build User Interface for Vesarthi application.',
               style: const TextStyle(fontSize: 16),
             ),
-           const  Text(
+            const Text(
               '• Collaborated with cross-functional teams to define, design, and ship new features.',
               style: const TextStyle(fontSize: 16),
             ),
-          const   Text(
+            const Text(
               '• Continuously discovered, evaluated, and implemented new technologies to maximize development efficiency.',
               style: const TextStyle(fontSize: 16),
             ),
-           const SizedBox(height: 16.0),
-           const  Text(
+            const SizedBox(height: 16.0),
+            const Text(
               'India Accelerator, Gurugram - Flutter Developer',
               style: const TextStyle(fontSize: 16),
             ),
-           const  Text(
+            const Text(
               'September 2021 - November 2021',
               style: const TextStyle(fontSize: 16),
             ),
-          const  SizedBox(height: 8.0),
-           const  Text(
+            const SizedBox(height: 8.0),
+            const Text(
               '• Created prototypes for clients based on requirements.',
-              style:  TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16),
             ),
-           const  Text(
+            const Text(
               '• Developed code based on given specifications and standards.',
-              style:  TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16),
             ),
-           const  Text(
+            const Text(
               '• Worked with Flutter to build a fully functional user interface for mobile applications.',
-              style:  TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16),
             ),
-          const  SizedBox(height: 24.0),
+            const SizedBox(height: 24.0),
 
-          const   Text(
+            const Text(
               'Projects',
-              style:  TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-          const  SizedBox(height: 8.0),
-          const  ProjectCard(
+            const SizedBox(height: 8.0),
+            const ProjectCard(
               title: 'Quality Control',
               description: [
                 'Developed dynamic quality control app using Flutter with geotagging functionality.',
@@ -195,7 +193,7 @@ class ResumeWidget extends StatelessWidget {
                 'Enabled sharing functionality for reports with specific individuals or groups.',
               ],
             ),
-          const  ProjectCard(
+            const ProjectCard(
               title: 'Field Staff Management',
               description: [
                 'Utilized geolocation services to track real-time positions of field staff members.',
@@ -204,7 +202,7 @@ class ResumeWidget extends StatelessWidget {
                 'Enabled offline functionality with automatic data sync when online.',
               ],
             ),
-          const  ProjectCard(
+            const ProjectCard(
               title: 'Farmer and Trader Registration',
               description: [
                 'Developed mobile application for seamless registration process of farmers and traders.',
@@ -214,7 +212,7 @@ class ResumeWidget extends StatelessWidget {
                 'Designed user-centric app with focus on usability and adoption.',
               ],
             ),
-          const  ProjectCard(
+            const ProjectCard(
               title: 'Benchmark',
               description: [
                 'Implemented local database storage (Isar or Hive) for offline benchmarking data storage.',
@@ -225,7 +223,7 @@ class ResumeWidget extends StatelessWidget {
                 'Implemented background syncing indicator and error handling.',
               ],
             ),
-          const  ProjectCard(
+            const ProjectCard(
               title: 'NewsHub - Flutter, REST APIs',
               description: [
                 'Working clone of popular News App InShorts in India.',
@@ -239,25 +237,25 @@ class ResumeWidget extends StatelessWidget {
             ),
 
             // Add other projects here
-          const  SizedBox(height: 24.0),
-          const   Text(
+            const SizedBox(height: 24.0),
+            const Text(
               'PROFILES',
-              style:  TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-          const  SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             GestureDetector(
               onTap: () {
                 launchUrl(Uri.parse(
                     "https://www.linkedin.com/in/prashant-sachan-827b11130/"));
               },
-              child:const  Text(
+              child: const Text(
                 'LinkedIn - prashant-sachan',
-                style:  TextStyle(
+                style: TextStyle(
                   fontSize: 16,
-                  decoration:  TextDecoration.underline,
+                  decoration: TextDecoration.underline,
                   color: Colors.blue,
                 ),
               ),
@@ -268,9 +266,9 @@ class ResumeWidget extends StatelessWidget {
               },
               child: const Text(
                 'GitHub - prashantsachan98',
-                style:  TextStyle(
+                style: TextStyle(
                   fontSize: 16,
-                  decoration:  TextDecoration.underline,
+                  decoration: TextDecoration.underline,
                   color: Colors.blue,
                 ),
               ),
@@ -299,9 +297,9 @@ class ProjectCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         Text(
+        Text(
           title,
-          style:  const TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -312,7 +310,7 @@ class ProjectCard extends StatelessWidget {
               .map(
                 (item) => Padding(
                   padding: const EdgeInsets.only(bottom: 4.0),
-                  child:  Text('• $item'),
+                  child: Text('• $item'),
                 ),
               )
               .toList(),
@@ -320,14 +318,14 @@ class ProjectCard extends StatelessWidget {
         if (link != null)
           Padding(
             padding: const EdgeInsets.only(top: 4.0),
-            child:  Text(
+            child: Text(
               'LINK - $link',
               style: const TextStyle(
                 color: Colors.blue,
               ),
             ),
           ),
-      const  SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
       ],
     );
   }
