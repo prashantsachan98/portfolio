@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class WidgetProjectCard extends StatefulWidget {
   final String imageAsset;
@@ -25,12 +26,14 @@ class _WidgetProjectCardState extends State<WidgetProjectCard> {
     return Stack(
       children: [
         Card(
-          elevation: 4,
+          elevation: 10,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
           child: InkWell(
-            onTap: _toggleExpanded,
+            onTap: () {
+              launchUrlString(widget.projectUrl);
+            },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -48,6 +51,7 @@ class _WidgetProjectCardState extends State<WidgetProjectCard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      const SizedBox(height: 4),
                       Text(
                         widget.title,
                         style: const TextStyle(
@@ -56,7 +60,7 @@ class _WidgetProjectCardState extends State<WidgetProjectCard> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 6),
                       AnimatedCrossFade(
                         duration: const Duration(milliseconds: 300),
                         firstChild: Text(
@@ -91,18 +95,25 @@ class _WidgetProjectCardState extends State<WidgetProjectCard> {
             ),
           ),
         ),
-        Visibility(
-          visible: !expanded,
-          child: Positioned(
-            bottom: 1,
-            right: MediaQuery.of(context).size.width / 2,
-            child: TextButton(
-              onPressed: _toggleExpanded,
-              child: const Card(
+        Positioned(
+          bottom: 8,
+          left: 0,
+          right: 0,
+          child: Container(
+            width: double.infinity,
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onTap: _toggleExpanded,
+              child: Card(
                 color: Colors.white,
                 elevation: 4,
-                shape: CircleBorder(),
-                child: Icon(Icons.keyboard_arrow_down_rounded,color: Colors.grey,),
+                shape: const CircleBorder(),
+                child: Icon(
+                  !expanded
+                      ? Icons.keyboard_arrow_down_rounded
+                      : Icons.keyboard_arrow_up_rounded,
+                  color: Colors.grey,
+                ),
               ),
             ),
           ),
