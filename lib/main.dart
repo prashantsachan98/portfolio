@@ -45,32 +45,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool _isDarkMode = false;
-  late WebViewController controllerWebview;
 
   @override
   void initState() {
-    controllerWebview = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
-      ..setUserAgent("userAgent")
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onProgress: (int progress) {
-            // Update loading bar.
-          },
-          onPageStarted: (String url) {},
-          onPageFinished: (String url) {},
-          onWebResourceError: (WebResourceError error) {},
-          onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
-              return NavigationDecision.prevent;
-            }
-            return NavigationDecision.navigate;
-          },
-        ),
-      )
-      ..loadRequest(Uri.parse(
-          'https://drive.google.com/file/d/1--G1uAegTa4pZgMc_PqTMZnULz_KUZe-/view?pli=1'));
     super.initState();
   }
 
@@ -337,7 +314,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildResumeTab() {
     // Replace this URL with the URL of your resume file
-    final url = 'https://flutter.dev';
+    const url =
+        'https://drive.google.com/file/d/1--G1uAegTa4pZgMc_PqTMZnULz_KUZe-/view?pli=1';
     if (kIsWeb) {
       // Use an iframe on the web platform
       // Create an iframe element
@@ -355,6 +333,27 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       );
     } else {
+      final WebViewController controllerWebview = WebViewController()
+        ..setJavaScriptMode(JavaScriptMode.unrestricted)
+        ..setBackgroundColor(const Color(0x00000000))
+        ..setUserAgent("userAgent")
+        ..setNavigationDelegate(
+          NavigationDelegate(
+            onProgress: (int progress) {
+              // Update loading bar.
+            },
+            onPageStarted: (String url) {},
+            onPageFinished: (String url) {},
+            onWebResourceError: (WebResourceError error) {},
+            onNavigationRequest: (NavigationRequest request) {
+              if (request.url.startsWith('https://www.youtube.com/')) {
+                return NavigationDecision.prevent;
+              }
+              return NavigationDecision.navigate;
+            },
+          ),
+        )
+        ..loadRequest(Uri.parse(url));
       // Use a WebView on mobile platforms
       return WebViewWidget(controller: controllerWebview);
     }
