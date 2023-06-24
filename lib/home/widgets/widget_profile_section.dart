@@ -38,7 +38,7 @@ class WidgetProfileSection extends StatelessWidget {
       height: 200,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage('https://wallpaperaccess.com/full/1111946.jpg'),
+          image: AssetImage('asset/images/cover.webp'),
           fit: BoxFit.cover,
         ),
       ),
@@ -50,8 +50,8 @@ class WidgetProfileSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const <Widget>[
         CircleAvatar(
-          backgroundImage: NetworkImage(
-            'https://lh3.googleusercontent.com/pw/AJFCJaVdh_R2yAZ2hJ7FnyrUDqrhmVtOQcmNTN3MSspthV6m-MuyLI0Phcxk4bWeu3Lsnn7RDVwjFk3CTRUsHyGRAglYgDgpneYl88UwkvhEZ1CO6mvRM0HdQOHbYXNRTBsjsrLnF2l8ZY0m8dYXNdUQXU24=w717-h956-s-no?authuser=0',
+          backgroundImage: AssetImage(
+            'asset/images/prashant.jpg',
           ),
           radius: 50,
         ),
