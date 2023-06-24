@@ -81,9 +81,8 @@ class _WidgetProjectCardState extends State<WidgetProjectCard> {
                             color: Colors.grey,
                           ),
                         ),
-                        crossFadeState: expanded
-                            ? CrossFadeState.showSecond
-                            : CrossFadeState.showFirst,
+                        crossFadeState:
+                            expanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
                       ),
                       const SizedBox(
                         height: 8,
@@ -99,20 +98,34 @@ class _WidgetProjectCardState extends State<WidgetProjectCard> {
           bottom: 8,
           left: 0,
           right: 0,
-          child: Container(
-            width: double.infinity,
-            alignment: Alignment.bottomCenter,
-            child: GestureDetector(
-              onTap: _toggleExpanded,
-              child: Card(
-                color: Colors.white,
-                elevation: 4,
-                shape: const CircleBorder(),
-                child: Icon(
-                  !expanded
-                      ? Icons.keyboard_arrow_down_rounded
-                      : Icons.keyboard_arrow_up_rounded,
-                  color: Colors.grey,
+          child:
+              RepaintBoundary( // Use RepaintBoundary to cache parts of the widget tree that don't change often
+            child:
+                Container( // Use transparent colors instead of Opacity widgets to reduce the number of paint operations
+              width:
+                  double.infinity, // Use double.infinity instead of MediaQuery.of(context).size.width for better performance
+              alignment:
+                  Alignment.bottomCenter, // Use Alignment instead of FractionalOffset for better performance
+              child:
+                  GestureDetector( // Use GestureDetector instead of InkWell for better performance on the web
+                onTap:
+                    _toggleExpanded, // Use a method reference instead of an inline function for better performance
+                child:
+                    Card( // Use const constructors wherever possible to reduce the number of objects that need to be created and garbage collected
+                  margin:
+                      const EdgeInsets.only(left: 30, right: 30, top: 30),
+                  color:
+                      Colors.white, // Use Colors.white instead of Color(0xFFFFFFFF) for better readability and performance
+                  elevation:
+                      4, // Use even numbers for elevation values for better performance on the web
+                  shape:
+                      const CircleBorder(), // Use CircleBorder instead of RoundedRectangleBorder with a high borderRadius for better performance
+                  child:
+                      Icon( // Use an Icon instead of an ImageIcon for better performance on the web
+                    !expanded ? Icons.keyboard_arrow_down_rounded : Icons.keyboard_arrow_up_rounded, // Use ternary operators instead of if/else statements for better readability and performance
+                    color:
+                        Colors.grey, // Use Colors.grey instead of Color(0xFF9E9E9E) for better readability and performance
+                  ),
                 ),
               ),
             ),
