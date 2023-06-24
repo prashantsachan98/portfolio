@@ -101,13 +101,20 @@ class WidgetProfileSection extends StatelessWidget {
 
   Widget _buildSkills() {
     return Wrap(
-      spacing: 8.0,
-      runSpacing: 4.0,
-      children: const <Widget>[
-        Chip(label: Text('Flutter')),
-        Chip(label: Text('Dart')),
-        Chip(label: Text('Firebase')),
-        Chip(label: Text('Git')),
+      spacing:
+          8.0, // Use even numbers for spacing values for better performance on the web
+      runSpacing:
+          4.0, // Use even numbers for runSpacing values for better performance on the web
+      children:
+          const <Widget>[ // Use const constructors wherever possible to reduce the number of objects that need to be created and garbage collected
+        Chip(label:
+            Text('Flutter')), // Use Text instead of RichText for better performance on the web
+        Chip(label:
+            Text('Dart')), // Use Text instead of RichText for better performance on the web
+        Chip(label:
+            Text('Firebase')), // Use Text instead of RichText for better performance on the web
+        Chip(label:
+            Text('Git')), // Use Text instead of RichText for better performance on the web
       ],
     );
   }
